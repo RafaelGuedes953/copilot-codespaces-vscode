@@ -1,14 +1,16 @@
-const http = require('http');
-
-const hostname = '127.0.0.1';
+const express = require('express');
+const app = express();
 const port = 3000;
 
-const server = http.createServer((req, res) => {
-  res.statusCode = 200;
-  res.setHeader('Content-Type', 'text/plain');
-  res.end('Hello, World!\n');
+// Middleware para processar JSON
+app.use(express.json());
+
+// Rota básica
+app.get('/', (req, res) => {
+    res.send('Bem-vindo ao servidor Express!');
 });
 
-server.listen(port, hostname, () => {
-  console.log(`Server running at http://${hostname}:${port}/`);
+// Iniciar o servidor
+app.listen(port, () => {
+    console.log(`Servidor rodando em http://localhost:${port}`);
 });
